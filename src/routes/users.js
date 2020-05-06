@@ -7,7 +7,7 @@ const router = express.Router()
 // Create a post
 router.post('/', async (request, response) => {
   try {
-    const createdUser = await users.create(request.body)
+    const createdUser = await users.signUp(request.body)
     response.json({
       success: true,
       message: 'The next user was created',
@@ -19,7 +19,7 @@ router.post('/', async (request, response) => {
     response.status(400)
     response.json({
       success: false,
-      error: Object.entries(error)[0]
+      error: error.message
     })
   }
 })
@@ -70,7 +70,7 @@ router.patch('/:id', async (request, response) => {
 router.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    const userDeleted = users.deleteById(id)
+    const userDeleted = await users.deleteById(id)
     response.json({
       success: true,
       message: 'The next user was deleted',

@@ -1,16 +1,16 @@
 const jwt = require('jsonwebtoken')
 
-const secret = 'mysecretword'
+const _SECRET = 'holamundoSecreto2019'
 
-// Creando el JWT con sign
+// Generar token
 function sign (payload = {}) {
-  return jwt.sign(payload, secret)
+  return jwt.sign(payload, _SECRET)
 }
 
-// decodificar el token y el secreto
+// Verificar el token
 function verify (token = '') {
-  return jwt.verify(token, secret)
-} 
+  return jwt.verify(token, _SECRET)
+}
 
 module.exports = {
   ...jwt,

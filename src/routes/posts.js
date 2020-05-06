@@ -4,6 +4,11 @@ const router = express.Router()
 
 const posts = require('../useCases/post')
 
+const authMiddleware = require('../middlewares/auth')
+
+// Aplicamos(según el caso) el middleware para autorizzación especificamente a las rutas del post
+router.use(authMiddleware)
+
 // Create a post
 router.post('/', async (request, response) => {
   try {
